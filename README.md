@@ -49,4 +49,12 @@ Frontend → API Gateway → Lambda → DynamoDB
 ---
 
 ## 📸 Screenshots
-(Add your images here like before)
+
+### 🔹 POST API (Register User)
+![POST API](screenshots/post.png)
+
+### 🔹 GET API (Fetch Users)
+![GET API](screenshots/get.png)
+
+### 🔹 Frontend Dashboard
+![Frontend](screenshots/frontend.png)
