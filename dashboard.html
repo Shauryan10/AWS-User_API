@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+</head>
+<body>
+
+<h2>Register User</h2>
+
+<input id="name" placeholder="Enter Name">
+<input id="email" placeholder="Enter Email">
+<button onclick="registerUser()">Register</button>
+
+<hr>
+
+<h2>All Users</h2>
+<button onclick="getUsers()">Load Users</button>
+
+<ul id="userList"></ul>
+
+<script>
+const API_URL = "https://kiaraq5b5m.execute-api.ap-south-1.amazonaws.com";
+
+function registerUser() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  fetch(API_URL + "/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("User Registered!");
+  });
+}
+
+function getUsers() {
+  fetch(API_URL + "/users")
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById("userList");
+      list.innerHTML = "";
+
+      data.forEach(user => {
+        const li = document.createElement("li");
+        li.innerText = user.name + " - " + user.email;
+        list.appendChild(li);
+      });
+    });
+}
+</script>
+
+</body>
+</html>
